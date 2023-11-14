@@ -31,11 +31,11 @@ echo -e "\n\n Mise à jour de la configuration de PHPMyadmin \n"
 config_file="/etc/phpmyadmin/config.inc.php"
 uncomment="$cfg['Servers'][$i]['AllowNoPassword] = TRUE;"
 sed -i "/$uncomment/s/$////" $config_file &&
-sudo mysql
+mysql <<EOF
 USE mysql;
 UPDATE user SET plugin="mysql_native_password" WHERE user="root";
 flush privileges;
-exit
+EOF
 
 echo -e "\n\n Mise à jour de la configuration finie \n" &&
 sleep 1s &&
