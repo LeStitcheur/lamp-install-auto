@@ -27,9 +27,9 @@ sleep 1s &&
 
 echo -e "\n\n Mise à jour de la configuration de PHPMyadmin \n"
 config_file="/etc/phpmyadmin/config.inc.php"
-search="// $cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
-replace="$cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
-sed -i "s#$search#$replace" $config_file &&
+search="// \$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;"
+replace="\$cfg['Servers'][\$i]['AllowNoPassword'] = TRUE;"
+sed -i "s#$search#$replace#" $config_file &&
 echo "Include /etc/phpmyadmin/apache.conf" | sudo tee -a /etc/apache2/apache2.conf
 sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';"
 
