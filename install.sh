@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo -e "Bienvenue dans le script d'installation de PHP By MyWebSoluce"
+echo -e " ###########################################
+Bienvenue dans le script d'installation de PHP By MyWebSoluce
+#########################################"
 
 echo -e "\n\n Mise à jour des paquets APT \n"
 sudo apt update -y && sudo apt upgrade -y &&
@@ -29,10 +31,10 @@ sleep 1s &&
 
 echo -e "\n\n Mise à jour de la configuration de PHPMyadmin \n"
 config_file="/etc/phpmyadmin/config.inc.php"
-uncomment="$cfg['Servers'][$i]['AllowNoPassword] = TRUE;"
-sed -i "/$uncomment/s/$////" $config_file &&
-mysql <<EOF
-USE mysql;
+search="// $cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
+replace="$cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
+sed -i "/$search/$replace" $config_file &&
+mysql -h "localhost" -u "root" -p "" mysql <<EOF
 UPDATE user SET plugin="mysql_native_password" WHERE user="root";
 flush privileges;
 EOF
@@ -47,11 +49,9 @@ sleep 1s
 
 echo -e "\n\n Activation des modules \n"
 sudo a2enmod rewrite
-sudo phpenmod mcrrypt
+sudo phpenmod mcrypt
 
 echo -e "\n\n Remérrage des services Apache \n"
 sudo service apache2 restart
 
 echo -e "\n\n Installation terminée. \n"
-
-exit 0
