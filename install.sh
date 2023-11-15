@@ -55,3 +55,4 @@ echo -e "\n\n Remérrage des services Apache \n"
 sudo service apache2 restart
 
 echo -e "\n\n Installation terminée. \n"
+read -p "Appuyez sur une touche pour quitter"
