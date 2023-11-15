@@ -15,7 +15,7 @@ echo -e "\n\n Installation réussie \n" &&
 sleep 1s &&
 
 echo -e "\n\n Installation de PHP et de ses dépendences"
-sudo apt install libapache2-mod-php8.1.10 php8.1.10 php8.1.10-common php8.1.10-curl php8.1.10-dev php8.1.10-gd php8.1.10-intl php-json php-mbstring php-xml php-zip php-pear php8.1.10-mcrypt php8.1.10-mysql -y &&
+sudo apt install libapache2-mod-php php php-common php-curl php-dev php-gd php-intl php-json php-mbstring php-xml php-zip php-pear php-mcrypt php-mysql -y &&
 echo -e "\n\n Installation de PHP réussie \n" &&
 sleep 1s &&
 
@@ -33,7 +33,7 @@ echo -e "\n\n Mise à jour de la configuration de PHPMyadmin \n"
 config_file="/etc/phpmyadmin/config.inc.php"
 search="// $cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
 replace="$cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
-sed -i "/$search/$replace" $config_file &&
+sed -i "s/$search/$replace" $config_file &&
 mysql -h "localhost" -u "root" -p "" mysql <<EOF
 UPDATE user SET plugin="mysql_native_password" WHERE user="root";
 flush privileges;
