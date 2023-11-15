@@ -31,9 +31,7 @@ search="// $cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
 replace="$cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
 sed -i "s#$search#$replace" $config_file &&
 echo "Include /etc/phpmyadmin/apache.conf" | sudo tee -a /etc/apache2/apache2.conf
-mysql -h "localhost" -u "root" mysql <<EOF
-UPDATE user SET plugin="mysql_native_password" WHERE user="root";
-EOF
+sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';"
 
 echo -e "\n\n Mise à jour de la configuration finie \n" &&
 sleep 1s &&
