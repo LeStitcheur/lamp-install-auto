@@ -45,14 +45,16 @@ sleep 1s
 echo -e "\n\n Remérrage des services Apache \n"
 sudo service apache2 restart
 
-echo -e "\n\n Installation terminée. \n"
-echo -e "Ouverture de phpmyadmin dans votre navigateur ..."
+echo -e "\n\n Ouverture de phpmyadmin dans votre navigateur ... \n"
 sleep 2s
 xdg-open http://localhost/phpmyadmin
-echo -e "La page phpmyadmin a été ouverte"
-echo -e "Ouerture de la page d'accueil apache dans votre navigateur ..."
+echo -e "\n\n La page phpmyadmin a été ouverte \n"
+echo -e "\n\n Ouerture de la page d'accueil apache dans votre navigateur ... \n"
 sleep 2s
-xdg-open http://localhost/phpmyadmin
-echo -e "La page d'accueil a été ouverte"
+xdg-open http://localhost
+echo -e "\n\n La page d'accueil a été ouverte \n"
 
-read -p "Appuyez sur une touche pour quitter"
+
+sleep 3s
+echo -e "\n\n Installation terminée. \n"
+read -p "\n\n Appuyez sur une touche pour quitter \n"
