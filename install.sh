@@ -57,4 +57,5 @@ echo -e "\n\n La page d'accueil a été ouverte \n"
 
 sleep 3s
 echo -e "\n\n Installation terminée. \n"
-read -p "\n\n Appuyez sur une touche pour quitter \n"
+echo -e "\n\n Script By LeStitcheurFou pour MyWebSoluce \n"
+read -p "Appuyez sur une touche pour quitter"
