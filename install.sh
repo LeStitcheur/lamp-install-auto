@@ -9,20 +9,16 @@ sudo apt update -y && sudo apt upgrade -y &&
 echo -e "\n\n Mise à jour terminée \n" &&
 sleep 1s &&
 
-echo  -e "\n\n Installation du serveur Apache \n"
-sudo apt install apache2 apache2-doc apache2-npm-prefork apache2-utils libexpat1 ssl-cert -y &&
+echo  -e "\n\n Installation du serveur Apache / PHP / MySQL \n"
+sudo apt install apache2 php libapache2-mod-php mysql-server php-mysql -y &&
 echo -e "\n\n Installation réussie \n" &&
 sleep 1s &&
 
-echo -e "\n\n Installation de PHP et de ses dépendences"
-sudo apt install libapache2-mod-php php php-common php-curl php-dev php-gd php-intl php-json php-mbstring php-xml php-zip php-pear php-mcrypt php-mysql -y &&
-echo -e "\n\n Installation de PHP réussie \n" &&
+echo -e "\n\n Installation des modules PHP"
+sudo apt install php-curl php-gd php-intl php-json php-mbstring php-xml php-zip -y &&
+echo -e "\n\n Installation des modules réussie \n" &&
 sleep 1s &&
 
-echo -e "\n\n Installation de MySQL \n"
-sudo apt install  mysql-server mysql-client -y &&
-echo -e "\n\n Installation de MySQL réussie \n" &&
-sleep 1s &&
 
 echo -e "\n\n Installation de PHPMyAdmin \n"
 sudo apt install phpmyadmin -y &&
@@ -33,7 +29,8 @@ echo -e "\n\n Mise à jour de la configuration de PHPMyadmin \n"
 config_file="/etc/phpmyadmin/config.inc.php"
 search="// $cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
 replace="$cfg['Servers'][$i]['AllowNoPassword'] = TRUE;"
-sed -i "s/$search/$replace" $config_file &&
+sed -i "s#$search#$replace" $config_file &&
+sudo ln -s /usr/share/phpmyadmin /var/www/html
 mysql -h "localhost" -u "root" -p "" mysql <<EOF
 UPDATE user SET plugin="mysql_native_password" WHERE user="root";
 flush privileges;
