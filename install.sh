@@ -41,12 +41,18 @@ sudo chown -R www-data:www-data /var/www &&
 echo -e "\n\n Les permissions ont été ajustées \n" &&
 sleep 1s
 
-echo -e "\n\n Activation des modules \n"
-sudo a2enmod rewrite
-sudo phpenmod mcrypt
 
 echo -e "\n\n Remérrage des services Apache \n"
 sudo service apache2 restart
 
 echo -e "\n\n Installation terminée. \n"
+echo -e "Ouverture de phpmyadmin dans votre navigateur ..."
+sleep 2s
+xdg-open http://localhost/phpmyadmin
+echo -e "La page phpmyadmin a été ouverte"
+echo -e "Ouerture de la page d'accueil apache dans votre navigateur ..."
+sleep 2s
+xdg-open http://localhost/phpmyadmin
+echo -e "La page d'accueil a été ouverte"
+
 read -p "Appuyez sur une touche pour quitter"
