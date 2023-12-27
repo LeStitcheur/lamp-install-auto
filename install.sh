@@ -49,12 +49,6 @@ echo -e "\n\n Ouverture de phpmyadmin dans votre navigateur ... \n"
 sleep 2s
 xdg-open http://localhost/phpmyadmin
 echo -e "\n\n La page phpmyadmin a été ouverte \n"
-echo -e "\n\n ================================= \n"
-echo -e "\n\n Les identifiants sont :"
-echo -e "\n\n username :  root"
-echo -e "\n\n password : "
-echo -e "\n\n ================================= \n"
-
 echo -e "\n\n Ouerture de la page d'accueil apache dans votre navigateur ... \n"
 sleep 2s
 xdg-open http://localhost
